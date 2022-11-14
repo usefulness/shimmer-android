@@ -107,3 +107,22 @@ jobs:
         with:
           name: android-tests
           path: "${{ github.workspace }}/**/build/*AndroidTest/"
+
+  build-sample-app:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: 17
+
+      - name: Assemble sample app
+        uses: gradle/gradle-build-action@v2
+        with:
+          build-root-directory: sample
+          arguments: check

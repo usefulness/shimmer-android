@@ -10,6 +10,6 @@ android {
 }
 
 dependencies {
-  implementation(project(":shimmer"))
+  implementation("io.github.usefulness:shimmer-android-core")
   implementation(libs.constraintlayout.core)
 }
