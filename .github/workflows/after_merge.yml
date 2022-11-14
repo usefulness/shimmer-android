@@ -60,7 +60,7 @@ jobs:
           path: diffuse-source-file-release
           key: diffuse-${{ github.sha }}-${{ hashFiles('**/aar/**.aar') }}
 
-      - run: cp shimmer/build/outputs/aar/shimmer-release.aar diffuse-source-file-release
+      - run: cp shimmer-android-core/build/outputs/aar/shimmer-android-core-release.aar diffuse-source-file-release
         shell: bash
 
   build-sample-app:
