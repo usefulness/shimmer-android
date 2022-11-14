@@ -4,14 +4,7 @@ Shimmer for Android
 </h1>
 
 
-[Shimmer](http://facebook.github.io/shimmer-android) is an Android library that
-provides an easy way to add a shimmer effect to any view in your Android app.
-
-It is useful as an unobtrusive loading indicator, and was originally developed for <a href="http://newsroom.fb.com/news/2013/04/introducing-home/">Facebook Home</a>.
-
-Find more examples and usage instructions over at:
-
-[facebook.github.io/shimmer-android](http://facebook.github.io/shimmer-android)
+_Opinionated_ fork of https://github.com/facebook/shimmer-android
 
 ## License
 
@@ -52,7 +45,7 @@ all new additions, added in 2022 and later, are available under MIT License:
 ```markdown
 MIT License
 
-Copyright (c) Developers from https://github.com/usefulness organization
+Copyright (c) Developers at https://github.com/usefulness
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
