@@ -1,0 +1,24 @@
+import org.jetbrains.kotlin.gradle.dsl.KotlinCompile
+
+plugins {
+  id 'java-gradle-plugin'
+  alias(libs.plugins.jmailen.kotlinter)
+  alias(libs.plugins.kotlin.jvm)
+}
+
+dependencies {
+  implementation(libs.kotlin.gradle)
+  implementation(libs.agp.gradle)
+}
+
+tasks.withType(KotlinCompile).configureEach {
+  kotlinOptions.jvmTarget = JavaVersion.current()
+}
+gradlePlugin {
+  plugins {
+    publishingPlugin {
+      id = 'com.starter.publishing'
+      implementationClass = 'PublishingPlugin'
+    }
+  }
+}

@@ -1,32 +1,35 @@
-/*
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree.
- */
+import org.jetbrains.kotlin.gradle.plugin.KotlinPluginWrapperKt
 
-buildscript {
-  apply from: rootProject.file('versions.gradle')
-  repositories {
-    mavenLocal()
-    jcenter()
-    google()
-  }
-  dependencies {
-    classpath plugs.agp
-    classpath plugs.kotlin
-  }
+plugins {
+  alias(libs.plugins.starter.config)
+  alias(libs.plugins.starter.versioning)
+  alias(libs.plugins.starter.library.android) apply false
+  alias(libs.plugins.starter.library.kotlin) apply false
+  alias(libs.plugins.starter.application.android) apply false
+}
+
+commonConfig {
+  javaFilesAllowed true
+  javaVersion JavaVersion.VERSION_11
 }
 
 allprojects {
-  repositories {
-    mavenLocal()
-    jcenter()
-    google()
+  pluginManager.withPlugin("kotlin") { plugin ->
+    def kotlinVersion = KotlinPluginWrapperKt.getKotlinPluginVersion(project)
+    configurations.configureEach {
+      resolutionStrategy.eachDependency {
+        if (requested.group == 'org.jetbrains.kotlin' && requested.name.startsWith("kotlin")) {
+          useVersion kotlinVersion
+        }
+      }
+    }
   }
-}
 
-task clean(type: Delete) {
-  delete rootProject.buildDir
+  pluginManager.withPlugin("java") {
+    java {
+      toolchain {
+        languageVersion = JavaLanguageVersion.of(JavaVersion.VERSION_17.toString())
+      }
+    }
+  }
 }

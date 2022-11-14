@@ -1,0 +1,109 @@
+name: Build project
+
+on:
+  pull_request:
+
+jobs:
+  cancel-previous-workflows:
+    name: Cancel previous workflow runs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: styfle/cancel-workflow-action@0.11.0
+        with:
+          access_token: ${{ github.token }}
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: 17
+
+      - uses: gradle/wrapper-validation-action@v1
+
+      - uses: gradle/gradle-build-action@v2
+
+      - run: ./gradlew projectCodestyle -x checkstyle
+
+      - run: ./gradlew assemble
+
+      - run: ./gradlew projectCoverage
+
+      - name: Upload test results
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: "${{ github.workspace }}/**/build/reports/tests"
+
+      - name: Upload jacoco report
+        uses: actions/upload-artifact@v3
+        with:
+          name: jacoco-report
+          path: "${{ github.workspace }}/**/build/reports/jacoco"
+
+      - run: ./gradlew projectLint
+
+      - uses: actions/upload-artifact@v3
+        if: ${{ always() }}
+        with:
+          name: lint-results
+          path: '${{ github.workspace }}/**/build/**/reports/lint-results-*.html'
+
+  connected-test:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        apiVersion: [ 28 ]
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: 17
+
+      - uses: gradle/gradle-build-action@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version-file: '.python-version'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install 'Pillow==9.1.1'
+
+      - name: run tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ matrix.apiVersion }}
+          profile: pixel_xl
+          target: google_apis
+          arch: x86
+          disable-spellchecker: true
+          script: |
+            adb shell settings put global hidden_api_policy_p_apps 1
+            adb shell settings put global hidden_api_policy_pre_p_apps 1
+            adb shell settings put global hidden_api_policy  1
+            python --version
+            pip show Pillow
+            ./gradlew connectedCheck 
+
+      - name: Upload tests result
+        uses: actions/upload-artifact@v3
+        with:
+          name: android-tests
+          path: "${{ github.workspace }}/**/build/*AndroidTest/"
