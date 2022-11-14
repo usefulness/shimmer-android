@@ -10,9 +10,6 @@ android {
   publishing {
     singleVariant("release")
   }
-  packagingOptions {
-    exclude 'LICENSE.txt'
-  }
   lint {
     disable("UnknownNullness")
   }
