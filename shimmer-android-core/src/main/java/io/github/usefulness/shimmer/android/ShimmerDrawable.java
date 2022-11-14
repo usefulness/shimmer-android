@@ -7,7 +7,7 @@
  */
 
 
-package com.facebook.shimmer;
+package io.github.usefulness.shimmer.android;
 
 import android.animation.ValueAnimator;
 import android.graphics.Canvas;

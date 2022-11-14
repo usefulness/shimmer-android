@@ -5,6 +5,7 @@ plugins {
 android {
   namespace = "io.github.usefulness.shimmer.sample"
   defaultConfig {
+    minSdk 28
     applicationId "io.github.usefulness.shimmer.sample"
   }
   buildFeatures {

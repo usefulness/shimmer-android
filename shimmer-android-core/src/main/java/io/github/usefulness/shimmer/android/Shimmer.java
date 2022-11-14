@@ -6,7 +6,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-package com.facebook.shimmer;
+package io.github.usefulness.shimmer.android;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -18,9 +18,9 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.FloatRange;
 import androidx.annotation.IntDef;
 import androidx.annotation.Px;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-import io.github.usefulness.shimmer.android.R;
 
 /**
  * A Shimmer is an object detailing all of the configuration options available for {@link
