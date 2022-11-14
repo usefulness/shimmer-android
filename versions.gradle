@@ -8,10 +8,9 @@
 
 ext {
   versions = [
-      targetSdk          : 28,
-      compileSdk         : 28,
-      minSdk             : 14,
-      buildTools         : '28.0.3',
+      targetSdk          : 33,
+      compileSdk         : 33,
+      minSdk             : 21,
       kotlin             : '1.4.10',
       androidGradlePlugin: '4.1.0',
       constraintLayout   : '2.0.4',

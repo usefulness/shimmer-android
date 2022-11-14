@@ -20,6 +20,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import io.github.usefulness.shimmer.android.R;
 
 /**
  * Shimmer is an Android library that provides an easy way to add a shimmer effect to any {@link

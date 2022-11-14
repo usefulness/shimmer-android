@@ -1,23 +1,41 @@
-/*
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-apply plugin: 'com.android.library'
-
+plugins {
+  alias(libs.plugins.starter.library.android)
+  id("com.starter.publishing")
+}
 android {
-  compileSdkVersion versions.compileSdk
-
+  namespace = "io.github.usefulness.shimmer.android"
   defaultConfig {
-    minSdkVersion versions.minSdk
+    minSdk 23
+  }
+  publishing {
+    singleVariant("release")
+  }
+  packagingOptions {
+    exclude 'LICENSE.txt'
+  }
+  lint {
+    disable("UnknownNullness")
   }
 }
 
-dependencies {
-  implementation deps.androidXAnnotations
+androidComponents {
+  beforeVariants(selector().withBuildType("release")) { builder ->
+    builder.enable = true
+  }
 }
 
-apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
+tasks.withType(JavaCompile).configureEach {
+  options.release.set(JavaVersion.VERSION_1_8.majorVersion.toInteger())
+}
+
+tasks.withType(Test).configureEach {
+  useJUnitPlatform()
+  testLogging {
+    events "skipped", "failed"
+  }
+}
+
+
+dependencies {
+  implementation(libs.androidx.annotation)
+}
