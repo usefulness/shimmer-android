@@ -7,13 +7,11 @@ maven-junit = "5.9.1"
 maven-assertj = "3.23.1"
 google-androidx-core = "1.9.0"
 google-androidx-annotation = "1.5.0"
-google-gson = "2.10"
 google-androidtest = "1.5.0"
 google-androidtestRunner = "1.5.1"
 google-androidtestext = "1.1.4"
 google-espresso = "3.5.0"
 google-appcompat = "1.5.1"
-google-material = "1.7.0"
 google-constraintLayout = "2.1.4"
 
 [libraries]
@@ -24,14 +22,12 @@ junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "mav
 assertj-core = { module = "org.assertj:assertj-core", version.ref = "maven-assertj" }
 androidx-core = { module = "androidx.core:core", version.ref = "google-androidx-core" }
 androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "google-androidx-annotation" }
-gson = { module = "com.google.code.gson:gson", version.ref = "google-gson" }
 androidtest-core = { module = "androidx.test:core", version.ref = "google-androidtest" }
 androidtest-runner = { module = "androidx.test:runner", version.ref = "google-androidtestRunner" }
 androidtest-rules = { module = "androidx.test:rules", version.ref = "google-androidtest" }
 androidtest-junitext = { module = "androidx.test.ext:junit-ktx", version.ref = "google-androidtestext" }
 espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "google-espresso" }
 appcompat-core = { module = "androidx.appcompat:appcompat", version.ref = "google-appcompat" }
-material-core = { module = "com.google.android.material:material", version.ref = "google-material" }
 constraintlayout-core = { module = "androidx.constraintlayout:constraintlayout", version.ref = "google-constraintLayout" }
 
 [plugins]

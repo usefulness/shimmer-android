@@ -7,9 +7,13 @@ android {
   defaultConfig {
     applicationId "io.github.usefulness.shimmer.sample"
   }
+  buildFeatures {
+    viewBinding = true
+  }
 }
 
 dependencies {
   implementation("io.github.usefulness:shimmer-android-core")
+  implementation(libs.appcompat.core)
   implementation(libs.constraintlayout.core)
 }
