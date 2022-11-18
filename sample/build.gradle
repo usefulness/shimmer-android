@@ -1,8 +1,6 @@
-import com.karumi.shot.tasks.ExecuteScreenshotTests
-
 plugins {
   alias(libs.plugins.starter.application.android)
-  id("shot")
+  alias(libs.plugins.starter.screenshottesting)
 }
 
 android {
@@ -10,13 +8,16 @@ android {
   defaultConfig {
     minSdk 28
     applicationId "io.github.usefulness.shimmer.sample"
-    testInstrumentationRunner "com.karumi.shot.ShotTestRunner"
+    testInstrumentationRunner "io.github.usefulness.shimmer.android.CustomRunner"
   }
   buildFeatures {
     viewBinding = true
   }
 }
 
+screenshots {
+  failureDir "$buildDir/reports/failedScreenshots"
+}
 
 dependencies {
   implementation("io.github.usefulness:shimmer-android-core")
