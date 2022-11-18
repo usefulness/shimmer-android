@@ -1,6 +1,7 @@
 [versions]
 gradle-starter = "0.53.0"
 gradle-kotlinter = "3.12.0"
+gradle-screenshotTesting = "0.16.10"
 google-agp = "7.3.1"
 maven-kotlin = "1.7.21"
 maven-junit = "5.9.1"
@@ -19,10 +20,12 @@ agp-gradle = { module = "com.android.tools.build:gradle", version.ref = "google-
 kotlin-gradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "maven-kotlin" }
 
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "maven-junit" }
+junit-vintage = { module = "org.junit.vintage:junit-vintage-engine", version.ref = "maven-junit" }
+
 assertj-core = { module = "org.assertj:assertj-core", version.ref = "maven-assertj" }
 androidx-core = { module = "androidx.core:core", version.ref = "google-androidx-core" }
 androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "google-androidx-annotation" }
-androidtest-core = { module = "androidx.test:core", version.ref = "google-androidtest" }
+androidtest-core = { module = "androidx.test:core-ktx", version.ref = "google-androidtest" }
 androidtest-runner = { module = "androidx.test:runner", version.ref = "google-androidtestRunner" }
 androidtest-rules = { module = "androidx.test:rules", version.ref = "google-androidtest" }
 androidtest-junitext = { module = "androidx.test.ext:junit-ktx", version.ref = "google-androidtestext" }
@@ -38,3 +41,4 @@ starter-versioning = { id = "com.starter.versioning", version.ref = "gradle-star
 starter-library-kotlin = { id = "com.starter.library.kotlin", version.ref = "gradle-starter" }
 starter-library-android = { id = "com.starter.library.android", version.ref = "gradle-starter" }
 starter-application-android = { id = "com.starter.application.android", version.ref = "gradle-starter" }
+starter-screenshottesting = { id = "io.github.usefulness.screenshot-testing-plugin", version.ref = "gradle-screenshotTesting" }

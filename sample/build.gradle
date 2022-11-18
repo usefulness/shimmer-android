@@ -1,5 +1,8 @@
+import com.karumi.shot.tasks.ExecuteScreenshotTests
+
 plugins {
   alias(libs.plugins.starter.application.android)
+  id("shot")
 }
 
 android {
@@ -7,14 +10,25 @@ android {
   defaultConfig {
     minSdk 28
     applicationId "io.github.usefulness.shimmer.sample"
+    testInstrumentationRunner "com.karumi.shot.ShotTestRunner"
   }
   buildFeatures {
     viewBinding = true
   }
 }
 
+
 dependencies {
   implementation("io.github.usefulness:shimmer-android-core")
   implementation(libs.appcompat.core)
   implementation(libs.constraintlayout.core)
+
+  testImplementation(libs.junit.jupiter)
+
+  androidTestImplementation(libs.appcompat.core)
+  androidTestImplementation(libs.espresso.core)
+  androidTestImplementation(libs.androidtest.core)
+  androidTestImplementation(libs.androidtest.runner)
+  androidTestImplementation(libs.androidtest.rules)
+  androidTestImplementation(libs.androidtest.junitext)
 }

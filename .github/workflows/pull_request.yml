@@ -72,7 +72,7 @@ jobs:
       - uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: 17
+          java-version: 11
 
       - uses: gradle/gradle-build-action@v2
 
@@ -94,19 +94,27 @@ jobs:
           target: google_apis
           arch: x86
           disable-spellchecker: true
+          working-directory: sample
           script: |
             adb shell settings put global hidden_api_policy_p_apps 1
             adb shell settings put global hidden_api_policy_pre_p_apps 1
             adb shell settings put global hidden_api_policy  1
             python --version
             pip show Pillow
-            ./gradlew connectedCheck 
+            ./gradlew executeScreenshotTests
 
       - name: Upload tests result
         uses: actions/upload-artifact@v3
         with:
           name: android-tests
           path: "${{ github.workspace }}/**/build/*AndroidTest/"
+
+      - name: Upload screeenshots
+        uses: actions/upload-artifact@v3
+        if: ${{ always() }}
+        with:
+          name: screenshots-report
+          path: "${{ github.workspace }}/**/build/**/shot/"
 
   build-sample-app:
     runs-on: ubuntu-latest
