@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
-import com.facebook.shimmer.Shimmer
+import io.github.usefulness.shimmer.android.Shimmer
 import io.github.usefulness.shimmer.sample.databinding.MainBinding
 
 class MainActivity : AppCompatActivity() {

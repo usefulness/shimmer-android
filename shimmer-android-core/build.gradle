@@ -35,4 +35,6 @@ tasks.withType(Test).configureEach {
 
 dependencies {
   implementation(libs.androidx.annotation)
+
+  testImplementation(libs.junit.jupiter)
 }

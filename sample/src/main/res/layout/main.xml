@@ -8,7 +8,7 @@
   android:padding="20dp"
   >
 
-  <com.facebook.shimmer.ShimmerFrameLayout
+  <io.github.usefulness.shimmer.android.ShimmerFrameLayout
     android:id="@+id/shimmer_view_container"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -30,19 +30,19 @@
       <ImageView
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:src="@drawable/fb_logo"
+        android:src="@drawable/ic_wave"
         />
 
       <TextView
         style="@style/thin.white.large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:gravity="center"
-        android:text="@string/mission_statement"
+        android:text="@string/sample_shimmered_copy"
         />
     </LinearLayout>
-  </com.facebook.shimmer.ShimmerFrameLayout>
+  </io.github.usefulness.shimmer.android.ShimmerFrameLayout>
 
   <TextView
     android:id="@+id/preset"
