@@ -8,7 +8,6 @@ android {
   defaultConfig {
     minSdk 28
     applicationId "io.github.usefulness.shimmer.sample"
-    testInstrumentationRunner "io.github.usefulness.shimmer.android.CustomRunner"
   }
   buildFeatures {
     viewBinding = true
