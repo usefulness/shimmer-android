@@ -1,11 +1,4 @@
 pluginManagement {
-  resolutionStrategy {
-    eachPlugin {
-      if (requested.id.id == 'shot') {
-        useModule("com.karumi:shot:5.14.1")
-      }
-    }
-  }
   repositories {
     gradlePluginPortal()
     google()
