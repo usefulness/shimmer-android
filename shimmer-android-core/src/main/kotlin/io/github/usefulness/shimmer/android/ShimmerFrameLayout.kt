@@ -10,7 +10,7 @@ import android.widget.FrameLayout
 import io.github.usefulness.shimmer.android.Shimmer.AlphaHighlightBuilder
 import io.github.usefulness.shimmer.android.Shimmer.ColorHighlightBuilder
 
-class ShimmerFrameLayout : FrameLayout {
+open class ShimmerFrameLayout : FrameLayout {
 
     private val contentPaint = Paint()
     private val shimmerDrawable = ShimmerDrawable()
