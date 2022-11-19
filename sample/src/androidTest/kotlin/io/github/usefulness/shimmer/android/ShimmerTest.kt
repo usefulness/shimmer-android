@@ -49,7 +49,7 @@ private fun View.record(width: Int, height: Int) {
     val screenshotFilePrefix = "$testClassText-${testInfo.methodName}"
 
     Screenshot.snap(this)
-        .setMaxPixels(kotlin.Long.MAX_VALUE)
+        .setMaxPixels(Long.MAX_VALUE)
         .setGroup(screenshotFilePrefix)
         .setName("$screenshotFilePrefix-${width}x$height")
         .record()

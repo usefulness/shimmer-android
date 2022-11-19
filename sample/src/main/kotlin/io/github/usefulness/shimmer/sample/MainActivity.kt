@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
-import io.github.usefulness.shimmer.android.Shimmer
+import io.github.usefulness.shimmer.android.ShimmerConfig
 import io.github.usefulness.shimmer.sample.databinding.MainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -47,47 +47,59 @@ class MainActivity : AppCompatActivity() {
         // If a toast is already showing, hide it
         toast?.cancel()
 
-        val shimmerBuilder = Shimmer.AlphaHighlightBuilder()
         shimmerViewContainer.shimmer = when (preset) {
             1 -> {
                 // Slow and reverse
                 toast = Toast.makeText(context, "Slow and reverse", Toast.LENGTH_SHORT)
-                shimmerBuilder.setDuration(5000L).setRepeatMode(ValueAnimator.REVERSE)
+                ShimmerConfig(
+                    animationDuration = 5000L,
+                    repeatMode = ValueAnimator.REVERSE,
+                )
             }
 
             2 -> {
                 // Thin, straight and transparent
                 toast = Toast.makeText(context, "Thin, straight and transparent", Toast.LENGTH_SHORT)
-                shimmerBuilder.setBaseAlpha(0.1f).setDropoff(0.1f).setTilt(0f)
+                ShimmerConfig(
+                    animationDuration = 3000,
+                    baseAlpha = 0.1f,
+                    dropoff = 0.1f,
+                    tilt = 0f,
+                )
             }
 
             3 -> {
                 // Sweep angle 90
                 toast = Toast.makeText(context, "Sweep angle 90", Toast.LENGTH_SHORT)
-                shimmerBuilder.setDirection(Shimmer.Direction.TOP_TO_BOTTOM).setTilt(0f)
+                ShimmerConfig(
+                    direction = ShimmerConfig.Direction.TopToBottom,
+                    tilt = 0f,
+                )
             }
 
             4 -> {
                 // Spotlight
                 toast = Toast.makeText(context, "Spotlight", Toast.LENGTH_SHORT)
-                shimmerBuilder
-                    .setBaseAlpha(0f)
-                    .setDuration(2000L)
-                    .setDropoff(0.1f)
-                    .setIntensity(0.35f)
-                    .setShape(Shimmer.Shape.RADIAL)
+                ShimmerConfig(
+                    baseAlpha = 0f,
+                    animationDuration = 2000L,
+                    dropoff = 0.1f,
+                    intensity = 0.35f,
+                    shape = ShimmerConfig.Shape.Radial,
+                )
             }
 
             5 -> {
                 // Spotlight angle 45
                 toast = Toast.makeText(context, "Spotlight angle 45", Toast.LENGTH_SHORT)
-                shimmerBuilder
-                    .setBaseAlpha(0f)
-                    .setDuration(2000L)
-                    .setDropoff(0.1f)
-                    .setIntensity(0.35f)
-                    .setTilt(45f)
-                    .setShape(Shimmer.Shape.RADIAL)
+                ShimmerConfig(
+                    baseAlpha = 0f,
+                    animationDuration = 2000L,
+                    dropoff = 0.1f,
+                    intensity = 0.35f,
+                    tilt = 45f,
+                    shape = ShimmerConfig.Shape.Radial,
+                )
             }
 
             6 -> {
@@ -98,10 +110,9 @@ class MainActivity : AppCompatActivity() {
 
             else -> {
                 toast = Toast.makeText(context, "Default", Toast.LENGTH_SHORT)
-                shimmerBuilder
+                ShimmerConfig()
             }
         }
-            ?.build()
 
         if (showToast) {
             toast?.show()

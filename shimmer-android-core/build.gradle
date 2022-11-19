@@ -15,6 +15,10 @@ android {
   }
 }
 
+kotlin {
+  explicitApi()
+}
+
 androidComponents {
   beforeVariants(selector().withBuildType("release")) { builder ->
     builder.enable = true
