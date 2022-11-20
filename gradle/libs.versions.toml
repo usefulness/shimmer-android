@@ -2,6 +2,7 @@
 gradle-starter = "0.53.0"
 gradle-kotlinter = "3.12.0"
 gradle-screenshotTesting = "0.16.11"
+gradle-animationDisabler = "1.0.9"
 google-agp = "7.3.1"
 maven-kotlin = "1.7.21"
 maven-junit = "5.9.1"
@@ -42,3 +43,4 @@ starter-library-kotlin = { id = "com.starter.library.kotlin", version.ref = "gra
 starter-library-android = { id = "com.starter.library.android", version.ref = "gradle-starter" }
 starter-application-android = { id = "com.starter.application.android", version.ref = "gradle-starter" }
 starter-screenshottesting = { id = "io.github.usefulness.screenshot-testing-plugin", version.ref = "gradle-screenshotTesting" }
+droidsonroids-animationdisabler = { id = "pl.droidsonroids.animation-disabler", version.ref = "gradle-animationDisabler" }

@@ -3,10 +3,10 @@ package io.github.usefulness.shimmer.android
 import android.animation.ValueAnimator
 import android.content.res.TypedArray
 import android.graphics.Color
-import io.github.usefulness.shimmer.android.ShimmerConfig.Direction
-import io.github.usefulness.shimmer.android.ShimmerConfig.Shape
+import io.github.usefulness.shimmer.android.Shimmer.Direction
+import io.github.usefulness.shimmer.android.Shimmer.Shape
 
-internal fun TypedArray.buildShimmer(): ShimmerConfig {
+internal fun TypedArray.buildShimmer(): Shimmer {
     val direction = getInt(R.styleable.ShimmerFrameLayout_shimmer_direction, Direction.LeftToRight.ordinal)
     val baseAlpha = getFloat(R.styleable.ShimmerFrameLayout_shimmer_base_alpha, 0.3f)
     val highlightAlpha = getFloat(R.styleable.ShimmerFrameLayout_shimmer_highlight_alpha, 1f)
@@ -30,15 +30,15 @@ internal fun TypedArray.buildShimmer(): ShimmerConfig {
         val baseColor = getColor(R.styleable.ShimmerFrameLayout_shimmer_base_color, Color.WHITE)
         val highlightColor = getColor(R.styleable.ShimmerFrameLayout_shimmer_highlight_color, Color.WHITE)
 
-        ShimmerConfig.Style.Colored(
+        Shimmer.Style.Colored(
             baseColor = baseColor,
             highlightColor = highlightColor,
         )
     } else {
-        ShimmerConfig.Style.Alpha
+        Shimmer.Style.Alpha
     }
 
-    return ShimmerConfig(
+    return Shimmer(
         style = style,
         direction = Direction.fromAttr(direction),
         baseAlpha = baseAlpha,

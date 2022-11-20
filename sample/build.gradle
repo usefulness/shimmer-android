@@ -1,34 +1,5 @@
 plugins {
-  alias(libs.plugins.starter.application.android)
-  alias(libs.plugins.starter.screenshottesting)
+  alias(libs.plugins.starter.application.android) apply false
+  alias(libs.plugins.starter.library.android) apply false
 }
 
-android {
-  namespace = "io.github.usefulness.shimmer.sample"
-  defaultConfig {
-    minSdk 28
-    applicationId "io.github.usefulness.shimmer.sample"
-  }
-  buildFeatures {
-    viewBinding = true
-  }
-}
-
-screenshots {
-  failureDir "$buildDir/reports/failedScreenshots"
-}
-
-dependencies {
-  implementation("io.github.usefulness:shimmer-android-core")
-  implementation(libs.appcompat.core)
-  implementation(libs.constraintlayout.core)
-
-  testImplementation(libs.junit.jupiter)
-
-  androidTestImplementation(libs.appcompat.core)
-  androidTestImplementation(libs.espresso.core)
-  androidTestImplementation(libs.androidtest.core)
-  androidTestImplementation(libs.androidtest.runner)
-  androidTestImplementation(libs.androidtest.rules)
-  androidTestImplementation(libs.androidtest.junitext)
-}

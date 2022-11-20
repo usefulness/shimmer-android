@@ -2,10 +2,10 @@ package io.github.usefulness.shimmer.android
 
 import android.graphics.Color
 import android.graphics.RectF
-import io.github.usefulness.shimmer.android.ShimmerConfig.Shape
+import io.github.usefulness.shimmer.android.Shimmer.Shape
 import kotlin.math.sin
 
-internal val ShimmerConfig.colors: IntArray
+internal val Shimmer.colors: IntArray
     get() {
         fun Float.mixWith(reference: Int): Int {
             val intAlpha = (coerceIn(0f, 1f) * 0xFF).toInt()
@@ -32,19 +32,19 @@ internal val ShimmerConfig.colors: IntArray
         }
     }
 
-private val ShimmerConfig.baseColor
+private val Shimmer.baseColor
     get() = when (style) {
-        ShimmerConfig.Style.Alpha -> 0x4cffffff
-        is ShimmerConfig.Style.Colored -> style.baseColor
+        Shimmer.Style.Alpha -> 0x4cffffff
+        is Shimmer.Style.Colored -> style.baseColor
     }
 
-private val ShimmerConfig.highlightColor
+private val Shimmer.highlightColor
     get() = when (style) {
-        ShimmerConfig.Style.Alpha -> Color.WHITE
-        is ShimmerConfig.Style.Colored -> style.baseColor
+        Shimmer.Style.Alpha -> Color.WHITE
+        is Shimmer.Style.Colored -> style.highlightColor
     }
 
-internal val ShimmerConfig.positions
+internal val Shimmer.positions
     get() = when (shape) {
         Shape.Linear -> floatArrayOf(
             ((1f - intensity - dropoff) / 2f).coerceIn(0f, 1f),
@@ -61,11 +61,11 @@ internal val ShimmerConfig.positions
         )
     }
 
-internal fun ShimmerConfig.width(width: Int) = if (fixedWidth > 0) fixedWidth else (widthRatio * width)
+internal fun Shimmer.width(width: Int) = if (fixedWidth > 0) fixedWidth else (widthRatio * width)
 
-internal fun ShimmerConfig.height(height: Int) = if (fixedHeight > 0) fixedHeight else (heightRatio * height)
+internal fun Shimmer.height(height: Int) = if (fixedHeight > 0) fixedHeight else (heightRatio * height)
 
-internal fun ShimmerConfig.getBounds(viewWidth: Int, viewHeight: Int): RectF {
+internal fun Shimmer.getBounds(viewWidth: Int, viewHeight: Int): RectF {
     val magnitude = maxOf(viewWidth, viewHeight)
     val rad = Math.PI / 2.0 - Math.toRadians(tilt % 90.0)
     val hyp = magnitude / sin(rad)
@@ -79,13 +79,13 @@ internal fun ShimmerConfig.getBounds(viewWidth: Int, viewHeight: Int): RectF {
     )
 }
 
-internal val ShimmerConfig.Direction.isVertical
+internal val Shimmer.Direction.isVertical
     get() = when (this) {
-        ShimmerConfig.Direction.TopToBottom,
-        ShimmerConfig.Direction.BottomToTop,
+        Shimmer.Direction.TopToBottom,
+        Shimmer.Direction.BottomToTop,
         -> true
 
-        ShimmerConfig.Direction.LeftToRight,
-        ShimmerConfig.Direction.RightToLeft,
+        Shimmer.Direction.LeftToRight,
+        Shimmer.Direction.RightToLeft,
         -> false
     }

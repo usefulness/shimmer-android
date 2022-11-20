@@ -45,7 +45,7 @@ open class ShimmerFrameLayout : FrameLayout {
         setWillNotDraw(false)
         shimmerDrawable.callback = this
         shimmer = if (attrs == null) {
-            ShimmerConfig()
+            Shimmer()
         } else {
             @Suppress("Recycle")
             context.obtainStyledAttributes(attrs, R.styleable.ShimmerFrameLayout, 0, 0)

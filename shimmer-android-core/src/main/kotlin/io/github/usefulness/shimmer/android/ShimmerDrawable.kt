@@ -15,8 +15,8 @@ import android.graphics.Rect
 import android.graphics.Shader
 import android.graphics.drawable.Drawable
 import android.view.animation.LinearInterpolator
-import io.github.usefulness.shimmer.android.ShimmerConfig.Shape
-import io.github.usefulness.shimmer.android.ShimmerConfig.Direction
+import io.github.usefulness.shimmer.android.Shimmer.Shape
+import io.github.usefulness.shimmer.android.Shimmer.Direction
 import kotlin.math.sqrt
 import kotlin.math.tan
 
@@ -33,14 +33,14 @@ internal class ShimmerDrawable : Drawable() {
         shimmerPaint.isAntiAlias = true
     }
 
-    var shimmer: ShimmerConfig? = null
+    var shimmer: Shimmer? = null
         set(value) {
             field = value
             if (value != null) {
                 shimmerPaint.xfermode = PorterDuffXfermode(
                     when (value.style) {
-                        ShimmerConfig.Style.Alpha -> PorterDuff.Mode.DST_IN
-                        is ShimmerConfig.Style.Colored -> PorterDuff.Mode.SRC_IN
+                        Shimmer.Style.Alpha -> PorterDuff.Mode.DST_IN
+                        is Shimmer.Style.Colored -> PorterDuff.Mode.SRC_IN
                     },
                 )
             }
@@ -155,7 +155,7 @@ internal class ShimmerDrawable : Drawable() {
         val shimmer = shimmer ?: return PixelFormat.TRANSLUCENT
 
 
-        return if (shimmer.clipToChildren || shimmer.style is ShimmerConfig.Style.Alpha) {
+        return if (shimmer.clipToChildren || shimmer.style is Shimmer.Style.Alpha) {
             PixelFormat.TRANSLUCENT
         } else {
             PixelFormat.OPAQUE
