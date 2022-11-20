@@ -80,4 +80,9 @@ jobs:
         uses: gradle/gradle-build-action@v2
         with:
           build-root-directory: sample
-          arguments: check
+          arguments: assemble check
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: apk
+          path: sample/app/build/outputs/apk/release/*.apk
