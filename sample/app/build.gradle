@@ -13,6 +13,27 @@ android {
   buildFeatures {
     viewBinding = true
   }
+  signingConfigs {
+    named("debug") {
+      storeFile rootProject.file("keys/debug.keystore")
+      storePassword 'android'
+      keyAlias 'androiddebugkey'
+      keyPassword 'android'
+    }
+  }
+  buildTypes {
+    named("debug") {
+      signingConfig signingConfigs.getByName("debug")
+    }
+    named("release") {
+      signingConfig signingConfigs.getByName("debug")
+    }
+  }
+
+  lint {
+    disable("SetTextI18n")
+    disable("HardcodedText")
+  }
 }
 
 screenshots {
@@ -23,6 +44,13 @@ dependencies {
   implementation("io.github.usefulness:shimmer-android-core")
   implementation(libs.appcompat.core)
   implementation(libs.constraintlayout.core)
+  implementation(libs.material.core)
+  implementation(libs.androidx.core)
+  implementation(libs.androidx.lifecycle.viewmodel)
+  implementation(libs.androidx.activity.core)
+  implementation(libs.androidx.fragment.core)
+  debugImplementation(libs.leakcanary.android)
+
 
   testImplementation(libs.junit.jupiter)
 

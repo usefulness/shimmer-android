@@ -41,12 +41,14 @@
         />
 
       <TextView
-        style="@style/thin.white.large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif-thin"
         android:gravity="center"
         android:text="@string/sample_shimmered_copy"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
         />
     </LinearLayout>
   </io.github.usefulness.shimmer.android.ShimmerFrameLayout>
