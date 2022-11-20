@@ -18,4 +18,5 @@ pluginManagement {
 
 rootProject.name = 'io.github.usefulness.shimmer.sample'
 
+include ":app"
 includeBuild ".."

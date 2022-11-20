@@ -1,14 +1,14 @@
 package io.github.usefulness.shimmer.android
 
 import android.content.Context
+import android.content.res.TypedArray
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.drawable.Drawable
+import android.os.Build
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
-import io.github.usefulness.shimmer.android.Shimmer.AlphaHighlightBuilder
-import io.github.usefulness.shimmer.android.Shimmer.ColorHighlightBuilder
 
 open class ShimmerFrameLayout : FrameLayout {
 
@@ -44,20 +44,16 @@ open class ShimmerFrameLayout : FrameLayout {
     private fun init(context: Context, attrs: AttributeSet?) {
         setWillNotDraw(false)
         shimmerDrawable.callback = this
-        if (attrs == null) {
-            shimmer = AlphaHighlightBuilder().build()
-            return
-        }
-        val attributes = context.obtainStyledAttributes(attrs, R.styleable.ShimmerFrameLayout, 0, 0)
-
-        val shimmerBuilder = if (attributes.getBoolean(R.styleable.ShimmerFrameLayout_shimmer_colored, false)) {
-            ColorHighlightBuilder()
+        shimmer = if (attrs == null) {
+            Shimmer()
         } else {
-            AlphaHighlightBuilder()
+            @Suppress("Recycle")
+            context.obtainStyledAttributes(attrs, R.styleable.ShimmerFrameLayout, 0, 0)
+                .useCompat { it.buildShimmer() }
         }
-        shimmer = shimmerBuilder.consumeAttributes(attributes).build()
-
-        attributes.recycle()
+        if (isInEditMode) {
+            setStaticAnimationProgress(0.5f)
+        }
     }
 
     var shimmer
@@ -160,3 +156,26 @@ open class ShimmerFrameLayout : FrameLayout {
         shimmerDrawable.clearStaticAnimationProgress()
     }
 }
+
+@Suppress("TooGenericExceptionCaught")
+private inline fun <R> TypedArray.useCompat(block: (TypedArray) -> R) =
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+        use(block)
+    } else {
+        var exception: Throwable? = null
+        try {
+            block(this)
+        } catch (e: Throwable) {
+            exception = e
+            throw e
+        } finally {
+            when (exception) {
+                null -> recycle()
+                else -> try {
+                    recycle()
+                } catch (closeException: Throwable) {
+                    exception.addSuppressed(closeException)
+                }
+            }
+        }
+    }
