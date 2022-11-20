@@ -154,7 +154,6 @@ internal class ShimmerDrawable : Drawable() {
     override fun getOpacity(): Int {
         val shimmer = shimmer ?: return PixelFormat.TRANSLUCENT
 
-
         return if (shimmer.clipToChildren || shimmer.style is Shimmer.Style.Alpha) {
             PixelFormat.TRANSLUCENT
         } else {

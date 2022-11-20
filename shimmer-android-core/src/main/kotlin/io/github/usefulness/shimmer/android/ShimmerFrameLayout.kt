@@ -51,6 +51,9 @@ open class ShimmerFrameLayout : FrameLayout {
             context.obtainStyledAttributes(attrs, R.styleable.ShimmerFrameLayout, 0, 0)
                 .useCompat { it.buildShimmer() }
         }
+        if (isInEditMode) {
+            setStaticAnimationProgress(0.5f)
+        }
     }
 
     var shimmer
@@ -153,7 +156,6 @@ open class ShimmerFrameLayout : FrameLayout {
         shimmerDrawable.clearStaticAnimationProgress()
     }
 }
-
 
 @Suppress("TooGenericExceptionCaught")
 private inline fun <R> TypedArray.useCompat(block: (TypedArray) -> R) =
