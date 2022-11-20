@@ -15,10 +15,12 @@ import android.graphics.Rect
 import android.graphics.Shader
 import android.graphics.drawable.Drawable
 import android.view.animation.LinearInterpolator
-import io.github.usefulness.shimmer.android.Shimmer.Shape
 import io.github.usefulness.shimmer.android.Shimmer.Direction
+import io.github.usefulness.shimmer.android.Shimmer.Shape
 import kotlin.math.sqrt
 import kotlin.math.tan
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.milliseconds
 
 internal class ShimmerDrawable : Drawable() {
 
@@ -173,12 +175,13 @@ internal class ShimmerDrawable : Drawable() {
             removeAllUpdateListeners()
         }
 
-        valueAnimator = ValueAnimator.ofFloat(0f, 1f + (shimmer.repeatDelay / shimmer.animationDuration).toFloat()).apply {
+        val animationDuration = shimmer.animationDuration.takeIf { it > Duration.ZERO } ?: 10.milliseconds
+        valueAnimator = ValueAnimator.ofFloat(0f, 1f + (shimmer.repeatDelay / animationDuration).toFloat()).apply {
             interpolator = LinearInterpolator()
-            repeatMode = shimmer.repeatMode
-            startDelay = shimmer.startDelay
+            repeatMode = shimmer.repeatMode.valueAnimatorValue
+            startDelay = shimmer.startDelay.inWholeMilliseconds
             repeatCount = shimmer.repeatCount
-            duration = shimmer.animationDuration + shimmer.repeatDelay
+            duration = (animationDuration + shimmer.repeatDelay).inWholeMilliseconds
             addUpdateListener(updateListener)
 
             if (wasStartedBefore) {
@@ -197,10 +200,8 @@ internal class ShimmerDrawable : Drawable() {
 
     private fun updateShader() {
         val shimmer = shimmer ?: return
-        val boundsWidth = bounds.width().takeIf { it > 0 } ?: return
-        val boundsHeight = bounds.height().takeIf { it > 0 } ?: return
-        val width = shimmer.width(boundsWidth)
-        val height = shimmer.height(boundsHeight)
+        val width = bounds.width().toFloat().takeIf { it > 0 } ?: return
+        val height = bounds.height().toFloat().takeIf { it > 0 } ?: return
 
         shimmerPaint.shader = when (shimmer.shape) {
             Shape.Linear -> {

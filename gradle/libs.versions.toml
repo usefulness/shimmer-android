@@ -15,6 +15,11 @@ google-androidtestext = "1.1.4"
 google-espresso = "3.5.0"
 google-appcompat = "1.5.1"
 google-constraintLayout = "2.1.4"
+google-material = "1.7.0"
+google-lifecycle = "2.5.1"
+google-activity = "1.6.1"
+google-fragment = "1.5.4"
+maven-leakcanary = "2.10"
 
 [libraries]
 agp-gradle = { module = "com.android.tools.build:gradle", version.ref = "google-agp" }
@@ -24,8 +29,11 @@ junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "mav
 junit-vintage = { module = "org.junit.vintage:junit-vintage-engine", version.ref = "maven-junit" }
 
 assertj-core = { module = "org.assertj:assertj-core", version.ref = "maven-assertj" }
-androidx-core = { module = "androidx.core:core", version.ref = "google-androidx-core" }
+androidx-core = { module = "androidx.core:core-ktx", version.ref = "google-androidx-core" }
 androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "google-androidx-annotation" }
+androidx-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "google-lifecycle" }
+androidx-activity-core = { module = "androidx.activity:activity-ktx", version.ref = "google-activity" }
+androidx-fragment-core = { module = "androidx.fragment:fragment-ktx", version.ref = "google-fragment" }
 androidtest-core = { module = "androidx.test:core-ktx", version.ref = "google-androidtest" }
 androidtest-runner = { module = "androidx.test:runner", version.ref = "google-androidtestRunner" }
 androidtest-rules = { module = "androidx.test:rules", version.ref = "google-androidtest" }
@@ -33,6 +41,8 @@ androidtest-junitext = { module = "androidx.test.ext:junit-ktx", version.ref = "
 espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "google-espresso" }
 appcompat-core = { module = "androidx.appcompat:appcompat", version.ref = "google-appcompat" }
 constraintlayout-core = { module = "androidx.constraintlayout:constraintlayout", version.ref = "google-constraintLayout" }
+material-core = { module = "com.google.android.material:material", version.ref = "google-material" }
+leakcanary-android = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "maven-leakcanary" }
 
 [plugins]
 jmailen-kotlinter = { id = "org.jmailen.kotlinter", version.ref = "gradle-kotlinter" }

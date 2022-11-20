@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:orientation="vertical"
+  >
+
+  <TextView
+    android:id="@+id/groupTitle"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:paddingHorizontal="16dp"
+    android:text="group"
+    />
+
+  <HorizontalScrollView
+    android:id="@+id/groupScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipToPadding="false"
+    android:fillViewport="true"
+    android:paddingHorizontal="16dp"
+    android:scrollbars="none"
+    >
+
+    <com.google.android.material.button.MaterialButtonToggleGroup
+      android:id="@+id/group"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:selectionRequired="true"
+      app:singleSelection="true"
+      tools:minHeight="50dp"
+      tools:background="#f0f"
+      />
+  </HorizontalScrollView>
+</LinearLayout>

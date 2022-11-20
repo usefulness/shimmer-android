@@ -1,9 +1,8 @@
 package io.github.usefulness.shimmer.android
 
+import android.animation.ValueAnimator
 import android.graphics.Color
-import android.graphics.RectF
 import io.github.usefulness.shimmer.android.Shimmer.Shape
-import kotlin.math.sin
 
 internal val Shimmer.colors: IntArray
     get() {
@@ -44,6 +43,12 @@ private val Shimmer.highlightColor
         is Shimmer.Style.Colored -> style.highlightColor
     }
 
+internal val Shimmer.RepeatMode.valueAnimatorValue
+    get() = when (this) {
+        Shimmer.RepeatMode.Restart -> ValueAnimator.RESTART
+        Shimmer.RepeatMode.Reverse -> ValueAnimator.REVERSE
+    }
+
 internal val Shimmer.positions
     get() = when (shape) {
         Shape.Linear -> floatArrayOf(
@@ -60,24 +65,6 @@ internal val Shimmer.positions
             1f,
         )
     }
-
-internal fun Shimmer.width(width: Int) = if (fixedWidth > 0) fixedWidth else (widthRatio * width)
-
-internal fun Shimmer.height(height: Int) = if (fixedHeight > 0) fixedHeight else (heightRatio * height)
-
-internal fun Shimmer.getBounds(viewWidth: Int, viewHeight: Int): RectF {
-    val magnitude = maxOf(viewWidth, viewHeight)
-    val rad = Math.PI / 2.0 - Math.toRadians(tilt % 90.0)
-    val hyp = magnitude / sin(rad)
-    val padding = (3 * (hyp - magnitude) / 2.0).toFloat()
-
-    return RectF(
-        -padding,
-        -padding,
-        width(viewWidth) + padding,
-        height(viewHeight) + padding,
-    )
-}
 
 internal val Shimmer.Direction.isVertical
     get() = when (this) {
