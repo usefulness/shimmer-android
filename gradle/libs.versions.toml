@@ -18,7 +18,7 @@ google-constraintLayout = "2.1.4"
 google-material = "1.7.0"
 google-lifecycle = "2.5.1"
 google-activity = "1.6.1"
-google-fragment = "1.5.4"
+google-fragment = "1.5.5"
 maven-leakcanary = "2.10"
 
 [libraries]
