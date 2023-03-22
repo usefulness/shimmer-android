@@ -17,7 +17,7 @@ google-appcompat = "1.6.1"
 google-constraintLayout = "2.1.4"
 google-material = "1.8.0"
 google-lifecycle = "2.6.1"
-google-activity = "1.6.1"
+google-activity = "1.7.0"
 google-fragment = "1.5.5"
 maven-leakcanary = "2.10"
 
