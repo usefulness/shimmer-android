@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
             WindowInsetsCompat.CONSUMED
         }
 
-        lifecycleScope.launchWhenCreated {
+        lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(state = Lifecycle.State.CREATED) {
                 launch {
                     viewModel.config.collect { shimmer ->
