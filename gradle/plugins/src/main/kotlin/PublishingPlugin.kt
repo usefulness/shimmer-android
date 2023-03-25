@@ -1,4 +1,3 @@
-import com.android.build.gradle.BaseExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.plugins.ExtensionContainer
@@ -85,7 +84,7 @@ class PublishingPlugin : Plugin<Project> {
         pluginManager.withPlugin("com.android.library") {
             tasks.register("androidSourcesJar", Jar::class.java) { jar ->
                 jar.archiveClassifier.set("sources")
-                val android = extensions.findByName("android") as BaseExtension
+                val android = extensions.findByName("android") as com.android.build.gradle.BaseExtension
                 jar.from(android.sourceSets.getByName("main").java.srcDirs)
                 @Suppress("DEPRECATION")
                 jar.from((android.sourceSets.getByName("main").kotlin as com.android.build.gradle.api.AndroidSourceDirectorySet).srcDirs)

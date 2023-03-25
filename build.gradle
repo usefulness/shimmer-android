@@ -20,6 +20,10 @@ allprojects {
         }
       }
     }
+
+    kotlin {
+      jvmToolchain(17)
+    }
   }
 
   pluginManager.withPlugin("java") {
