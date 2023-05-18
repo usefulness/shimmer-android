@@ -19,7 +19,7 @@ google-material = "1.9.0"
 google-lifecycle = "2.6.1"
 google-activity = "1.7.1"
 google-fragment = "1.5.7"
-maven-leakcanary = "2.10"
+maven-leakcanary = "2.11"
 gradle-doctor = "0.8.1"
 
 [libraries]
