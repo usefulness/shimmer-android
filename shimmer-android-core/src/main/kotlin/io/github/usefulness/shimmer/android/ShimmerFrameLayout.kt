@@ -158,24 +158,23 @@ open class ShimmerFrameLayout : FrameLayout {
 }
 
 @Suppress("TooGenericExceptionCaught")
-private inline fun <R> TypedArray.useCompat(block: (TypedArray) -> R) =
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-        use(block)
-    } else {
-        var exception: Throwable? = null
-        try {
-            block(this)
-        } catch (e: Throwable) {
-            exception = e
-            throw e
-        } finally {
-            when (exception) {
-                null -> recycle()
-                else -> try {
-                    recycle()
-                } catch (closeException: Throwable) {
-                    exception.addSuppressed(closeException)
-                }
+private inline fun <R> TypedArray.useCompat(block: (TypedArray) -> R) = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+    use(block)
+} else {
+    var exception: Throwable? = null
+    try {
+        block(this)
+    } catch (e: Throwable) {
+        exception = e
+        throw e
+    } finally {
+        when (exception) {
+            null -> recycle()
+            else -> try {
+                recycle()
+            } catch (closeException: Throwable) {
+                exception.addSuppressed(closeException)
             }
         }
     }
+}

@@ -17,11 +17,7 @@ class PresetListBottomSheet : BottomSheetDialogFragment() {
 
     private val viewModel by activityViewModels<MainViewModel>()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val binding = FragmentPresetSheetBinding.inflate(inflater, container, false)
         val adapter = PresetsAdapter(
             onSelected = { selected ->
