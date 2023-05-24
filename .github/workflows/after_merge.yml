@@ -22,16 +22,16 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: set up JDK
-        uses: actions/setup-java@v3
+      - uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: 17
+          java-version: 20
 
-      - name: Assemble
-        uses: gradle/gradle-build-action@v2
-        with:
-          arguments: assemble
+      - uses: gradle/gradle-build-action@v2
+
+      - run: ./gradlew currentVersion
+
+      - run: ./gradlew assemble
 
       - name: Unwrap GPG key
         env:
@@ -49,10 +49,7 @@ jobs:
           SIGNING_SECRET_KEY_RING_FILE: ${{ secrets.SIGNING_SECRET_KEY_RING_FILE }}
         run: ./gradlew publishAllPublicationsToGithubRepository
 
-      - name: Coverage
-        uses: gradle/gradle-build-action@v2
-        with:
-          arguments: projectCoverage
+      - run: ./gradlew projectCoverage
 
       - uses: actions/cache@v3
         name: Upload base (release)
@@ -70,11 +67,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: set up JDK
-        uses: actions/setup-java@v3
+      - uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: 17
+          java-version: 20
 
       - name: Assemble sample app
         uses: gradle/gradle-build-action@v2
