@@ -1,5 +1,5 @@
 [versions]
-gradle-starter = "0.60.1"
+gradle-starter = "0.61.1"
 gradle-screenshotTesting = "0.16.12"
 gradle-animationDisabler = "1.0.9"
 google-agp = "8.0.2"
