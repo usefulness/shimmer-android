@@ -3,18 +3,13 @@ name: Build project
 on:
   pull_request:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/master' }}
+  
 jobs:
-  cancel-previous-workflows:
-    name: Cancel previous workflow runs
-    runs-on: ubuntu-latest
-    steps:
-      - uses: styfle/cancel-workflow-action@0.11.0
-        with:
-          access_token: ${{ github.token }}
-
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
         with:
@@ -31,9 +26,13 @@ jobs:
 
       - run: ./gradlew projectCodestyle
 
-      - run: ./gradlew assemble
+      - run: ./gradlew assemble check --scan
 
       - run: ./gradlew projectCoverage
+
+      - run: ./gradlew publishToMavenLocal
+
+      - run: git diff --exit-code
 
       - name: Upload test results
         if: ${{ always() }}
@@ -48,17 +47,12 @@ jobs:
           name: jacoco-report
           path: "${{ github.workspace }}/**/build/reports/jacoco"
 
-      - run: ./gradlew projectLint
 
       - uses: actions/upload-artifact@v3
         if: ${{ always() }}
         with:
           name: lint-results
           path: '${{ github.workspace }}/**/build/**/reports/lint-results-*.html'
-
-      - run: ./gradlew publishToMavenLocal
-
-      - run: git diff --exit-code
 
   screenshot-test:
     runs-on: macos-latest
@@ -67,8 +61,7 @@ jobs:
         apiVersion: [ 28 ]
 
     steps:
-      - name: checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
@@ -79,8 +72,7 @@ jobs:
 
       - uses: gradle/gradle-build-action@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - uses: actions/setup-python@v4
         with:
           python-version-file: '.python-version'
 
