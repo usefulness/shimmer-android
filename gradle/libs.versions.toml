@@ -20,14 +20,11 @@ google-activity = "1.7.2"
 google-fragment = "1.6.0"
 maven-leakcanary = "2.12"
 gradle-doctor = "0.8.1"
+maven-binarycompatiblity = "0.13.2"
 
 [libraries]
 agp-gradle = { module = "com.android.tools.build:gradle", version.ref = "google-agp" }
-kotlin-gradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "maven-kotlin" }
-
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "maven-junit" }
-junit-vintage = { module = "org.junit.vintage:junit-vintage-engine", version.ref = "maven-junit" }
-
 assertj-core = { module = "org.assertj:assertj-core", version.ref = "maven-assertj" }
 androidx-core = { module = "androidx.core:core-ktx", version.ref = "google-androidx-core" }
 androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "google-androidx-annotation" }
@@ -53,3 +50,4 @@ starter-application-android = { id = "com.starter.application.android", version.
 starter-screenshottesting = { id = "io.github.usefulness.screenshot-testing-plugin", version.ref = "gradle-screenshotTesting" }
 droidsonroids-animationdisabler = { id = "pl.droidsonroids.animation-disabler", version.ref = "gradle-animationDisabler" }
 osacky-doctor = { id = "com.osacky.doctor", version.ref = "gradle-doctor" }
+kotlinx-binarycompatibility = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "maven-binarycompatiblity" }
