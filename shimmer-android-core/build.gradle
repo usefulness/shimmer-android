@@ -1,6 +1,7 @@
 plugins {
   alias(libs.plugins.starter.library.android)
   id("com.starter.publishing")
+  alias(libs.plugins.kotlinx.binarycompatibility)
 }
 android {
   namespace = "io.github.usefulness.shimmer.android"
@@ -41,4 +42,5 @@ dependencies {
   implementation(libs.androidx.annotation)
 
   testImplementation(libs.junit.jupiter)
+  testImplementation(libs.assertj.core)
 }

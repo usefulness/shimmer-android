@@ -6,7 +6,7 @@ import androidx.annotation.FloatRange
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
-data class Shimmer(
+public data class Shimmer(
     val style: Style = Style.Alpha,
     val direction: Direction = Direction.LeftToRight,
     @FloatRange(from = 0.0, to = 1.0) val baseAlpha: Float = 0.3f,
@@ -29,18 +29,18 @@ data class Shimmer(
         require(dropoff >= 0f) { "Given invalid dropoff value: $dropoff" }
     }
 
-    sealed class Style {
+    public sealed class Style {
 
-        object Alpha : Style()
+        public data object Alpha : Style()
 
-        data class Colored(
+        public data class Colored(
             @ColorInt val baseColor: Int = Color.WHITE,
             @ColorInt val highlightColor: Int = Color.WHITE,
         ) : Style()
     }
 
     /** The shape of the shimmer's highlight. By default LINEAR is used.  */
-    enum class Shape(val attrValue: Int) {
+    public enum class Shape(internal val attrValue: Int) {
         /** Linear gives a ray reflection effect.  */
         Linear(0),
 
@@ -48,32 +48,32 @@ data class Shimmer(
         Radial(1),
         ;
 
-        companion object {
+        internal companion object {
 
-            fun fromAttr(value: Int) = values().first { it.attrValue == value }
+            fun fromAttr(value: Int): Shape = values().first { it.attrValue == value }
         }
     }
 
     /** Direction of the shimmer's sweep.  */
-    enum class Direction(val attrValue: Int) {
+    public enum class Direction(internal val attrValue: Int) {
         LeftToRight(0),
         TopToBottom(1),
         RightToLeft(2),
         BottomToTop(3),
         ;
 
-        companion object {
+        internal companion object {
 
             fun fromAttr(value: Int) = values().first { it.attrValue == value }
         }
     }
 
-    enum class RepeatMode(val attrValue: Int) {
+    public enum class RepeatMode(internal val attrValue: Int) {
         Restart(0),
         Reverse(1),
         ;
 
-        companion object {
+        internal companion object {
 
             fun fromAttr(value: Int) = values().first { it.attrValue == value }
         }
