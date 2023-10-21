@@ -25,12 +25,4 @@ allprojects {
       jvmToolchain(20)
     }
   }
-
-  pluginManager.withPlugin("java") {
-    java {
-      toolchain {
-        languageVersion = JavaLanguageVersion.of(JavaVersion.VERSION_17.toString())
-      }
-    }
-  }
 }
