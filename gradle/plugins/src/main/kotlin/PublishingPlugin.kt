@@ -97,7 +97,7 @@ class PublishingPlugin : Plugin<Project> {
                             publication.artifacts.artifact(tasks.getByName("androidSourcesJar"))
                             publication.pom { pom ->
                                 pom.name.set("${project.group}:${project.name}")
-                                pom.description.set("Screenshot Test for Android")
+                                pom.description.set("Shimmer for Android")
                                 pom.url.set("https://github.com/usefulness/shimmer-android")
                                 pom.licenses { licenses ->
                                     licenses.license { license ->
