@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.plugin.KotlinPluginWrapperKt
-
 plugins {
   alias(libs.plugins.starter.config)
   alias(libs.plugins.starter.versioning)
@@ -7,30 +5,21 @@ plugins {
 }
 
 commonConfig {
-  javaVersion JavaVersion.VERSION_11
+  javaVersion JavaVersion.VERSION_1_8
 }
 
 allprojects {
   pluginManager.withPlugin("kotlin") { plugin ->
-    def kotlinVersion = KotlinPluginWrapperKt.getKotlinPluginVersion(project)
     configurations.configureEach {
       resolutionStrategy.eachDependency {
         if (requested.group == 'org.jetbrains.kotlin' && requested.name.startsWith("kotlin")) {
-          useVersion kotlinVersion
+          useVersion libs.versions.mavencentral.kotlin.get()
         }
       }
     }
 
     kotlin {
-      jvmToolchain(20)
-    }
-  }
-
-  pluginManager.withPlugin("java") {
-    java {
-      toolchain {
-        languageVersion = JavaLanguageVersion.of(JavaVersion.VERSION_17.toString())
-      }
+      jvmToolchain(21)
     }
   }
 }

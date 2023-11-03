@@ -26,10 +26,6 @@ androidComponents {
   }
 }
 
-tasks.withType(JavaCompile).configureEach {
-  options.release.set(JavaVersion.VERSION_1_8.majorVersion.toInteger())
-}
-
 tasks.withType(Test).configureEach {
   useJUnitPlatform()
   testLogging {

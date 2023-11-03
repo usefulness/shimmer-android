@@ -144,9 +144,7 @@ public open class ShimmerFrameLayout : FrameLayout {
         }
     }
 
-    override fun verifyDrawable(who: Drawable): Boolean {
-        return super.verifyDrawable(who) || who === shimmerDrawable
-    }
+    override fun verifyDrawable(who: Drawable): Boolean = super.verifyDrawable(who) || who === shimmerDrawable
 
     public fun setStaticAnimationProgress(value: Float) {
         shimmerDrawable.setStaticAnimationProgress(value)
