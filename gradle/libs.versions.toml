@@ -19,7 +19,7 @@ google-lifecycle = "2.6.2"
 google-activity = "1.8.0"
 google-fragment = "1.6.2"
 maven-leakcanary = "2.12"
-gradle-doctor = "0.8.1"
+gradle-doctor = "0.9.0"
 maven-binarycompatiblity = "0.13.2"
 
 [libraries]
