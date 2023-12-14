@@ -36,19 +36,19 @@ jobs:
 
       - name: Upload test results
         if: ${{ always() }}
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: test-results
           path: "${{ github.workspace }}/**/build/reports/tests"
 
       - name: Upload jacoco report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: jacoco-report
           path: "${{ github.workspace }}/**/build/reports/jacoco"
 
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: ${{ always() }}
         with:
           name: lint-results
@@ -99,13 +99,13 @@ jobs:
             ./gradlew verify
 
       - name: Upload tests result
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: android-tests
           path: "${{ github.workspace }}/**/build/*AndroidTest/"
 
       - name: Upload screeenshots
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: ${{ always() }}
         with:
           name: screenshots-report
@@ -129,7 +129,7 @@ jobs:
           build-root-directory: sample
           arguments: assemble check
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: apk
           path: sample/app/build/outputs/apk/release/*.apk
