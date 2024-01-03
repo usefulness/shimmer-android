@@ -18,7 +18,7 @@ google-material = "1.11.0"
 google-lifecycle = "2.6.2"
 google-activity = "1.8.2"
 google-fragment = "1.6.2"
-maven-leakcanary = "2.12"
+maven-leakcanary = "2.13"
 gradle-doctor = "0.9.1"
 maven-binarycompatiblity = "0.13.2"
 
