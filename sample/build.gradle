@@ -5,5 +5,5 @@ plugins {
 }
 
 commonConfig {
-  javaVersion JavaVersion.VERSION_1_8
+  javaVersion JavaVersion.VERSION_11
 }
