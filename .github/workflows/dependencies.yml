@@ -37,7 +37,7 @@ jobs:
           project: 'shimmer'
           configuration: releaseRuntimeClasspath
 
-      - uses: peter-evans/find-comment@v2
+      - uses: peter-evans/find-comment@v3
         id: find_comment
         with:
           issue-number: ${{ github.event.pull_request.number }}
