@@ -20,9 +20,9 @@ jobs:
           distribution: 'temurin'
           java-version: 21
 
-      - uses: gradle/wrapper-validation-action@v3
+      - uses: gradle/actions/wrapper-validation@v3
 
-      - uses: gradle/gradle-build-action@v3
+      - uses: gradle/actions/setup-gradle@v3
 
       - run: ./gradlew projectCodestyle
 
