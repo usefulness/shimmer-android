@@ -70,7 +70,7 @@ jobs:
           distribution: 'temurin'
           java-version: 21
 
-      - uses: gradle/gradle-build-action@v3
+      - uses: gradle/actions/setup-gradle@v3
 
       - uses: actions/setup-python@v5
         with:
@@ -123,8 +123,7 @@ jobs:
           distribution: 'temurin'
           java-version: 21
 
-      - name: Assemble sample app
-        uses: gradle/gradle-build-action@v3
+      - uses: gradle/actions/setup-gradle@v3
         with:
           build-root-directory: sample
           arguments: assemble check
