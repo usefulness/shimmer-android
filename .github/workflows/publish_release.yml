@@ -42,8 +42,7 @@ jobs:
 
       - run: ./gradlew publishAllPublicationsToGithubRepository
 
-      - name: Assemble sample app
-        uses: gradle/gradle-build-action@v3
+      - uses: gradle/actions/setup-gradle@v3
         with:
           build-root-directory: sample
           arguments: assembleRelease
