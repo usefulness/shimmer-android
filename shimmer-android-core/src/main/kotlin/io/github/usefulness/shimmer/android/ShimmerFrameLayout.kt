@@ -168,6 +168,7 @@ private inline fun <R> TypedArray.useCompat(block: (TypedArray) -> R) = if (Buil
     } finally {
         when (exception) {
             null -> recycle()
+
             else -> try {
                 recycle()
             } catch (closeException: Throwable) {
