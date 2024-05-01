@@ -55,7 +55,7 @@ jobs:
           path: '${{ github.workspace }}/**/build/**/reports/lint-results-*.html'
 
   screenshot-test:
-    runs-on: macos-latest
+    runs-on: macos-13
     strategy:
       matrix:
         apiVersion: [ 28 ]
