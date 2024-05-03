@@ -1,14 +1,10 @@
 package io.github.usefulness.shimmer.android
 
-import android.view.LayoutInflater
 import android.view.View
 import android.view.View.MeasureSpec
 import android.view.View.MeasureSpec.makeMeasureSpec
-import androidx.test.ext.junit.rules.activityScenarioRule
-import com.facebook.testing.screenshot.Screenshot
-import com.facebook.testing.screenshot.TestMethodInfo
-import com.facebook.testing.screenshot.TestNameDetector
-import io.github.usefulness.shimmer.sample.MainActivity
+import app.cash.paparazzi.DeviceConfig
+import app.cash.paparazzi.Paparazzi
 import io.github.usefulness.shimmer.sample.databinding.ScreenshotTestLayoutBinding
 import org.junit.Rule
 import org.junit.Test
@@ -16,7 +12,11 @@ import org.junit.Test
 class ShimmerTest {
 
     @get:Rule
-    val rule = activityScenarioRule<MainActivity>()
+    val paparazzi = Paparazzi(
+        deviceConfig = DeviceConfig.PIXEL_5,
+        theme = "android:Theme.Material3.Dark.NoActionBar",
+        showSystemUi = false,
+    )
 
     @Test
     fun resizing() = recordWithData(
@@ -90,20 +90,15 @@ class ShimmerTest {
         shimmerProgresses: List<Number> = listOf(0.3, 0.5, 0.7),
         sizes: List<Pair<Int, Int>> = listOf(1400 to 800),
     ) {
-        val testInfo = TestNameDetector.getTestMethodInfo().let(::checkNotNull)
+        val binding = ScreenshotTestLayoutBinding.inflate(paparazzi.layoutInflater)
+        binding.shimmerViewContainer.shimmer = data
+        shimmerProgresses.forEach { progress ->
+            binding.shimmerViewContainer.setStaticAnimationProgress(progress.toFloat())
 
-        rule.scenario.onActivity { activity ->
-            val inflater = LayoutInflater.from(activity)
-            val binding = ScreenshotTestLayoutBinding.inflate(inflater)
-            binding.shimmerViewContainer.shimmer = data
-            shimmerProgresses.forEach { progress ->
-                binding.shimmerViewContainer.setStaticAnimationProgress(progress.toFloat())
+            sizes.forEach { (width, height) ->
+                binding.root.layout(width = width, height = height)
 
-                sizes.forEach { (width, height) ->
-                    binding.root.layout(width = width, height = height)
-
-                    binding.root.record(testInfo, "[$progress]-[${width}x$height]")
-                }
+                paparazzi.snapshot(binding.root, name = "[$progress]-[${width}x$height]")
             }
         }
     }
@@ -116,15 +111,4 @@ private fun View.layout(width: Int, height: Int) {
     )
 
     layout(0, 0, measuredWidth, measuredHeight)
-}
-
-private fun View.record(testInfo: TestMethodInfo, suffix: String) {
-    val testClassText = testInfo.className.substringAfterLast('.').removeSuffix("Test")
-    val screenshotFilePrefix = "$testClassText-${testInfo.methodName}"
-
-    Screenshot.snap(this)
-        .setMaxPixels(Long.MAX_VALUE)
-        .setGroup(screenshotFilePrefix)
-        .setName("$screenshotFilePrefix-$suffix")
-        .record()
 }
