@@ -34,25 +34,11 @@ jobs:
 
       - run: git diff --exit-code
 
-      - name: Upload test results
-        if: ${{ always() }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-results
-          path: "${{ github.workspace }}/**/build/reports/tests"
-
-      - name: Upload jacoco report
-        uses: actions/upload-artifact@v4
-        with:
-          name: jacoco-report
-          path: "${{ github.workspace }}/**/build/reports/jacoco"
-
-
       - uses: actions/upload-artifact@v4
         if: ${{ always() }}
         with:
-          name: lint-results
-          path: '${{ github.workspace }}/**/build/**/reports/lint-results-*.html'
+          name: plugin-reports
+          path: "${{ github.workspace }}/**/build/reports"
 
   build-sample-app:
     runs-on: ubuntu-latest
@@ -81,3 +67,9 @@ jobs:
         with:
           name: all-sample-app-reports
           path: sample/app/build/reports
+
+      - uses: actions/upload-artifact@v4
+        if: ${{ always() }}
+        with:
+          name: paparazzi-failure
+          path: sample/app/build/paparazzi
