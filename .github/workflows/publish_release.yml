@@ -43,9 +43,9 @@ jobs:
       - run: ./gradlew publishAllPublicationsToGithubRepository
 
       - uses: gradle/actions/setup-gradle@v3
-        with:
-          build-root-directory: sample
-          arguments: assembleRelease
+
+      - run: ./gradlew assembleRelease
+        working-directory: sample
 
       - uses: actions/upload-artifact@v4
         with:

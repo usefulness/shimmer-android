@@ -26,7 +26,7 @@ jobs:
 
       - run: ./gradlew projectCodestyle
 
-      - run: ./gradlew assemble check --scan
+      - run: ./gradlew assemble check  --scan
 
       - run: ./gradlew projectCoverage
 
@@ -54,63 +54,6 @@ jobs:
           name: lint-results
           path: '${{ github.workspace }}/**/build/**/reports/lint-results-*.html'
 
-  screenshot-test:
-    runs-on: macos-13
-    strategy:
-      matrix:
-        apiVersion: [ 28 ]
-
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: 21
-
-      - uses: gradle/actions/setup-gradle@v3
-
-      - uses: actions/setup-python@v5
-        with:
-          python-version-file: '.python-version'
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install 'Pillow==9.1.1'
-
-      - name: run tests
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: ${{ matrix.apiVersion }}
-          profile: pixel_xl
-          target: google_apis
-          arch: x86
-          disable-spellchecker: true
-          working-directory: sample
-          script: |
-            adb shell settings put global hidden_api_policy_p_apps 1
-            adb shell settings put global hidden_api_policy_pre_p_apps 1
-            adb shell settings put global hidden_api_policy  1
-            python --version
-            pip show Pillow
-            ./gradlew verify
-
-      - name: Upload tests result
-        uses: actions/upload-artifact@v4
-        with:
-          name: android-tests
-          path: "${{ github.workspace }}/**/build/*AndroidTest/"
-
-      - name: Upload screeenshots
-        uses: actions/upload-artifact@v4
-        if: ${{ always() }}
-        with:
-          name: screenshots-report
-          path: "${{ github.workspace }}/**/build/**/failedScreenshots/"
-
   build-sample-app:
     runs-on: ubuntu-latest
     steps:
@@ -124,11 +67,17 @@ jobs:
           java-version: 21
 
       - uses: gradle/actions/setup-gradle@v3
-        with:
-          build-root-directory: sample
-          arguments: assemble check
+
+      - run: ./gradlew assemble check verifyPaparazzi --scan
+        working-directory: sample
 
       - uses: actions/upload-artifact@v4
         with:
-          name: apk
+          name: sample-app-apk
           path: sample/app/build/outputs/apk/release/*.apk
+
+      - uses: actions/upload-artifact@v4
+        if: ${{ always() }}
+        with:
+          name: all-sample-app-reports
+          path: sample/app/build/reports

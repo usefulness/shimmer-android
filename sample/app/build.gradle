@@ -1,6 +1,6 @@
 plugins {
   alias(libs.plugins.starter.application.android)
-  alias(libs.plugins.starter.screenshottesting)
+  alias(libs.plugins.app.cash.paparazzi)
   alias(libs.plugins.droidsonroids.animationdisabler)
 }
 
@@ -40,8 +40,19 @@ android {
   }
 }
 
-screenshots {
-  failureDir "$buildDir/reports/failedScreenshots"
+afterEvaluate {
+  dependencies.constraints {
+    add("testImplementation", "com.google.guava:guava") {
+      attributes {
+        attribute(
+          TargetJvmEnvironment.TARGET_JVM_ENVIRONMENT_ATTRIBUTE,
+          objects.named(TargetJvmEnvironment, TargetJvmEnvironment.STANDARD_JVM)
+        )
+      }
+      because("LayoutLib and sdk-common depend on Guava's -jre published variant." +
+        "See https://github.com/cashapp/paparazzi/issues/906.")
+    }
+  }
 }
 
 dependencies {
@@ -55,13 +66,5 @@ dependencies {
   implementation(libs.androidx.fragment.core)
   debugImplementation(libs.leakcanary.android)
 
-
   testImplementation(libs.junit.jupiter)
-
-  androidTestImplementation(libs.appcompat.core)
-  androidTestImplementation(libs.espresso.core)
-  androidTestImplementation(libs.androidtest.core)
-  androidTestImplementation(libs.androidtest.runner)
-  androidTestImplementation(libs.androidtest.rules)
-  androidTestImplementation(libs.androidtest.junitext)
 }

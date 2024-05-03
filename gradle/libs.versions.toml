@@ -21,6 +21,7 @@ google-fragment = "1.7.0"
 maven-leakcanary = "2.14"
 gradle-doctor = "0.10.0"
 maven-binarycompatiblity = "0.14.0"
+maven-paparazzi = "1.3.3"
 
 [libraries]
 agp-gradle = { module = "com.android.tools.build:gradle", version.ref = "google-agp" }
@@ -31,11 +32,6 @@ androidx-annotation = { module = "androidx.annotation:annotation", version.ref =
 androidx-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "google-lifecycle" }
 androidx-activity-core = { module = "androidx.activity:activity-ktx", version.ref = "google-activity" }
 androidx-fragment-core = { module = "androidx.fragment:fragment-ktx", version.ref = "google-fragment" }
-androidtest-core = { module = "androidx.test:core-ktx", version.ref = "google-androidtest" }
-androidtest-runner = { module = "androidx.test:runner", version.ref = "google-androidtestRunner" }
-androidtest-rules = { module = "androidx.test:rules", version.ref = "google-androidtest" }
-androidtest-junitext = { module = "androidx.test.ext:junit-ktx", version.ref = "google-androidtestext" }
-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "google-espresso" }
 appcompat-core = { module = "androidx.appcompat:appcompat", version.ref = "google-appcompat" }
 constraintlayout-core = { module = "androidx.constraintlayout:constraintlayout", version.ref = "google-constraintLayout" }
 material-core = { module = "com.google.android.material:material", version.ref = "google-material" }
@@ -47,7 +43,7 @@ starter-versioning = { id = "com.starter.versioning", version.ref = "gradle-star
 starter-library-kotlin = { id = "com.starter.library.kotlin", version.ref = "gradle-starter" }
 starter-library-android = { id = "com.starter.library.android", version.ref = "gradle-starter" }
 starter-application-android = { id = "com.starter.application.android", version.ref = "gradle-starter" }
-starter-screenshottesting = { id = "io.github.usefulness.screenshot-testing-plugin", version.ref = "gradle-screenshotTesting" }
+app-cash-paparazzi = { id = "app.cash.paparazzi", version.ref = "maven-paparazzi" }
 droidsonroids-animationdisabler = { id = "pl.droidsonroids.animation-disabler", version.ref = "gradle-animationDisabler" }
 osacky-doctor = { id = "com.osacky.doctor", version.ref = "gradle-doctor" }
 kotlinx-binarycompatibility = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "maven-binarycompatiblity" }
