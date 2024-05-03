@@ -77,7 +77,7 @@ class ShimmerTest {
             ),
             dropoff = 0.1f,
             intensity = 0.5f,
-            baseAlpha = 0.4f,
+            baseAlpha = 0.8f,
             highlightAlpha = 0.9f,
             direction = Shimmer.Direction.RightToLeft,
             tilt = -10f,
