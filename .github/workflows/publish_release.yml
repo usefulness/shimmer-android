@@ -26,7 +26,7 @@ jobs:
           distribution: 'temurin'
           java-version: 21
 
-      - uses: gradle/actions/setup-gradle@v3
+      - uses: gradle/actions/setup-gradle@v4
 
       - run: ./gradlew currentVersion
 
@@ -42,7 +42,7 @@ jobs:
 
       - run: ./gradlew publishAllPublicationsToGithubRepository
 
-      - uses: gradle/actions/setup-gradle@v3
+      - uses: gradle/actions/setup-gradle@v4
 
       - run: ./gradlew assembleRelease
         working-directory: sample
