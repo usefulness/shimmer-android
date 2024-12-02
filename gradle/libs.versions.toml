@@ -2,7 +2,7 @@
 gradle-starter = "0.80.0"
 gradle-screenshotTesting = "0.17.5"
 gradle-animationDisabler = "1.0.9"
-google-agp = "8.7.2"
+google-agp = "8.7.3"
 maven-kotlin = "1.9.0"
 maven-junit = "5.11.3"
 maven-assertj = "3.26.3"
