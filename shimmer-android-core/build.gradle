@@ -8,9 +8,6 @@ android {
   defaultConfig {
     minSdk = 23
   }
-  publishing {
-    singleVariant("release")
-  }
   lint {
     disable("UnknownNullness")
   }
