@@ -9,8 +9,8 @@ import kotlin.time.Duration.Companion.seconds
 public data class Shimmer(
     val style: Style = Style.Alpha,
     val direction: Direction = Direction.LeftToRight,
-    @FloatRange(from = 0.0, to = 1.0) val baseAlpha: Float = 0.3f,
-    @FloatRange(from = 0.0, to = 1.0) val highlightAlpha: Float = 1f,
+    @field:FloatRange(from = 0.0, to = 1.0) val baseAlpha: Float = 0.3f,
+    @field:FloatRange(from = 0.0, to = 1.0) val highlightAlpha: Float = 1f,
     val shape: Shape = Shape.Linear,
     val intensity: Float = 0f,
     val dropoff: Float = 0.5f,
@@ -34,8 +34,8 @@ public data class Shimmer(
         public data object Alpha : Style()
 
         public data class Colored(
-            @ColorInt val baseColor: Int = Color.WHITE,
-            @ColorInt val highlightColor: Int = Color.WHITE,
+            @field:ColorInt val baseColor: Int = Color.WHITE,
+            @field:ColorInt val highlightColor: Int = Color.WHITE,
         ) : Style()
     }
 
@@ -50,7 +50,7 @@ public data class Shimmer(
 
         internal companion object {
 
-            fun fromAttr(value: Int): Shape = values().first { it.attrValue == value }
+            fun fromAttr(value: Int): Shape = entries.first { it.attrValue == value }
         }
     }
 
@@ -64,7 +64,7 @@ public data class Shimmer(
 
         internal companion object {
 
-            fun fromAttr(value: Int) = values().first { it.attrValue == value }
+            fun fromAttr(value: Int) = entries.first { it.attrValue == value }
         }
     }
 
@@ -75,7 +75,7 @@ public data class Shimmer(
 
         internal companion object {
 
-            fun fromAttr(value: Int) = values().first { it.attrValue == value }
+            fun fromAttr(value: Int) = entries.first { it.attrValue == value }
         }
     }
 }
