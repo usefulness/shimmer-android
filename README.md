@@ -94,4 +94,4 @@ val shimmer = Shimmer(
 )
 ```
 ## License
-The library is available under the mixed license https://github.com/usefulness/shimmer-android/blob/master/LICENSE
+The library is available under the [mixed license](https://github.com/usefulness/shimmer-android/blob/master/LICENSE)
