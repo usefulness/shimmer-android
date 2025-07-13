@@ -6,10 +6,7 @@ plugins {
 android {
   namespace = "io.github.usefulness.shimmer.android"
   defaultConfig {
-    minSdk 23
-  }
-  publishing {
-    singleVariant("release")
+    minSdk = 23
   }
   lint {
     disable("UnknownNullness")
