@@ -1,17 +1,9 @@
 [versions]
-gradle-starter = "0.87.0"
-gradle-screenshotTesting = "0.17.5"
-gradle-animationDisabler = "1.0.9"
-google-agp = "8.11.1"
-maven-kotlin = "1.9.0"
+gradle-starter = "0.88.0"
 maven-junit = "5.13.4"
 maven-assertj = "3.27.4"
-google-androidx-core = "1.16.0"
+google-androidx-core = "1.17.0"
 google-androidx-annotation = "1.9.1"
-google-androidtest = "1.5.0"
-google-androidtestRunner = "1.5.2"
-google-androidtestext = "1.1.5"
-google-espresso = "3.5.1"
 google-appcompat = "1.7.1"
 google-constraintLayout = "2.2.1"
 google-material = "1.12.0"
@@ -21,7 +13,7 @@ google-fragment = "1.8.9"
 maven-leakcanary = "2.14"
 gradle-doctor = "0.11.0"
 maven-binarycompatiblity = "0.18.1"
-maven-paparazzi = "1.3.5"
+maven-paparazzi = "2.0.0-alpha02"
 maven-vanniktech-maven-publish = "0.34.0"
 
 [libraries]
@@ -45,6 +37,5 @@ starter-library-kotlin = { id = "com.starter.library.kotlin", version.ref = "gra
 starter-library-android = { id = "com.starter.library.android", version.ref = "gradle-starter" }
 starter-application-android = { id = "com.starter.application.android", version.ref = "gradle-starter" }
 app-cash-paparazzi = { id = "app.cash.paparazzi", version.ref = "maven-paparazzi" }
-droidsonroids-animationdisabler = { id = "pl.droidsonroids.animation-disabler", version.ref = "gradle-animationDisabler" }
 osacky-doctor = { id = "com.osacky.doctor", version.ref = "gradle-doctor" }
 kotlinx-binarycompatibility = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "maven-binarycompatiblity" }

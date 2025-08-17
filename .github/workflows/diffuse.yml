@@ -24,7 +24,7 @@ jobs:
       - uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: 24
+          java-version-file: .java-version
 
       - uses: actions/cache@v4
         name: Download base
