@@ -1,36 +1,35 @@
 plugins {
   alias(libs.plugins.starter.application.android)
   alias(libs.plugins.app.cash.paparazzi)
-  alias(libs.plugins.droidsonroids.animationdisabler)
 }
 
 android {
   namespace = "io.github.usefulness.shimmer.sample"
   defaultConfig {
-    minSdk 28
-    applicationId "io.github.usefulness.shimmer.sample"
+    minSdk = 28
+    applicationId = "io.github.usefulness.shimmer.sample"
   }
   buildFeatures {
     viewBinding = true
   }
   signingConfigs {
     named("debug") {
-      storeFile rootProject.file("keys/debug.keystore")
-      storePassword 'android'
-      keyAlias 'androiddebugkey'
-      keyPassword 'android'
+      storeFile = rootProject.file("keys/debug.keystore")
+      storePassword = 'android'
+      keyAlias = 'androiddebugkey'
+      keyPassword = 'android'
     }
   }
   buildTypes {
     named("debug") {
-      signingConfig signingConfigs.getByName("debug")
+      signingConfig = signingConfigs.getByName("debug")
       applicationIdSuffix ".debug"
       versionNameSuffix "-debug"
     }
     named("release") {
-      signingConfig signingConfigs.getByName("debug")
+      signingConfig = signingConfigs.getByName("debug")
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-      minifyEnabled true
+      minifyEnabled = true
     }
   }
 
