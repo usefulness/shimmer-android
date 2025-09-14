@@ -28,8 +28,6 @@ jobs:
 
       - run: ./gradlew assemble check  --scan
 
-      - run: ./gradlew projectCoverage
-
       - run: ./gradlew publishToMavenLocal
 
       - run: git diff --exit-code
