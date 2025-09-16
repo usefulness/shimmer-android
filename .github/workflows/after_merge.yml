@@ -41,8 +41,6 @@ jobs:
           ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.GPG_KEY_CONTENTS }}
         run: ./gradlew publishAllPublicationsToGithubRepository --no-configuration-cache
 
-      - run: ./gradlew projectCoverage
-
       - uses: actions/cache@v4
         name: Upload base (release)
         with:
