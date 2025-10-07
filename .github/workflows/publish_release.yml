@@ -46,6 +46,6 @@ jobs:
           name: apk
           path: sample/app/build/outputs/apk/release/*.apk
 
-      - uses: softprops/action-gh-release@v2.3.4
+      - uses: softprops/action-gh-release@v2.4.0
         with:
           files: sample/app/build/outputs/apk/release/*.apk
