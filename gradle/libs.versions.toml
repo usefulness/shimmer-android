@@ -14,7 +14,7 @@ maven-leakcanary = "2.14"
 gradle-doctor = "0.12.1"
 maven-binarycompatiblity = "0.18.1"
 maven-paparazzi = "2.0.0-alpha02"
-maven-vanniktech-maven-publish = "0.34.0"
+maven-vanniktech-maven-publish = "0.35.0"
 
 [libraries]
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "maven-junit" }
