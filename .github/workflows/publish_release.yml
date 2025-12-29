@@ -41,7 +41,7 @@ jobs:
       - run: ./gradlew assembleRelease
         working-directory: sample
 
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v6
         with:
           name: apk
           path: sample/app/build/outputs/apk/release/*.apk
