@@ -89,7 +89,7 @@ internal class ShimmerDrawable : Drawable() {
     }
 
     fun setStaticAnimationProgress(value: Float) {
-        if (value == staticAnimationProgress || value < 0f && staticAnimationProgress < 0f) {
+        if (value == staticAnimationProgress || ((value < 0f) && (staticAnimationProgress < 0f))) {
             return
         }
         staticAnimationProgress = value.coerceAtMost(1f)
