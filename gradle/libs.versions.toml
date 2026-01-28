@@ -13,7 +13,7 @@ google-fragment = "1.8.9"
 maven-leakcanary = "2.14"
 gradle-doctor = "0.12.1"
 maven-binarycompatiblity = "0.18.1"
-maven-paparazzi = "2.0.0-alpha02"
+maven-paparazzi = "2.0.0-alpha04"
 maven-vanniktech-maven-publish = "0.36.0"
 
 [libraries]
