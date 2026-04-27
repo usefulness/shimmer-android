@@ -1,22 +1,33 @@
 package io.github.usefulness.shimmer.android
 
+import android.view.LayoutInflater
 import android.view.View
 import android.view.View.MeasureSpec
 import android.view.View.MeasureSpec.makeMeasureSpec
-import app.cash.paparazzi.DeviceConfig
-import app.cash.paparazzi.Paparazzi
+import androidx.appcompat.view.ContextThemeWrapper
+import androidx.core.view.drawToBitmap
+import androidx.test.core.app.ApplicationProvider
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.github.takahirom.roborazzi.RobolectricDeviceQualifiers
+import com.github.takahirom.roborazzi.RoborazziOptions
+import com.github.takahirom.roborazzi.captureRoboImage
+import io.github.usefulness.shimmer.sample.R
 import io.github.usefulness.shimmer.sample.databinding.ScreenshotTestLayoutBinding
 import org.junit.Rule
 import org.junit.Test
+import org.junit.rules.TestName
+import org.junit.runner.RunWith
+import org.robolectric.annotation.Config
+import org.robolectric.annotation.GraphicsMode
+import org.robolectric.annotation.GraphicsMode.Mode.NATIVE
 
+@RunWith(AndroidJUnit4::class)
+@GraphicsMode(NATIVE)
+@Config(qualifiers = RobolectricDeviceQualifiers.Pixel5)
 class ShimmerTest {
 
     @get:Rule
-    val paparazzi = Paparazzi(
-        deviceConfig = DeviceConfig.PIXEL_5,
-        theme = "android:Theme.Material3.Dark.NoActionBar",
-        showSystemUi = false,
-    )
+    val testName = TestName()
 
     @Test
     fun resizing() = recordWithData(
@@ -90,7 +101,8 @@ class ShimmerTest {
         shimmerProgresses: List<Number> = listOf(0.3, 0.5, 0.7),
         sizes: List<Pair<Int, Int>> = listOf(1400 to 800),
     ) {
-        val binding = ScreenshotTestLayoutBinding.inflate(paparazzi.layoutInflater)
+        val context = ContextThemeWrapper(ApplicationProvider.getApplicationContext(), R.style.AppTheme)
+        val binding = ScreenshotTestLayoutBinding.inflate(LayoutInflater.from(context))
         binding.shimmerViewContainer.shimmer = data
         shimmerProgresses.forEach { progress ->
             binding.shimmerViewContainer.setStaticAnimationProgress(progress.toFloat())
@@ -98,7 +110,12 @@ class ShimmerTest {
             sizes.forEach { (width, height) ->
                 binding.root.layout(width = width, height = height)
 
-                paparazzi.snapshot(binding.root, name = "[$progress]-[${width}x$height]")
+                binding.root.drawToBitmap().captureRoboImage(
+                    "io.github.usefulness.shimmer.android_ShimmerTest_${testName.methodName}_[$progress]-[${width}x$height].png",
+                    roborazziOptions = RoborazziOptions(
+                        compareOptions = RoborazziOptions.CompareOptions(changeThreshold = 0.03f),
+                    ),
+                )
             }
         }
     }

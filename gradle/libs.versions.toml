@@ -1,5 +1,5 @@
 [versions]
-gradle-starter = "0.94.0"
+gradle-starter = "0.95.0"
 maven-junit = "6.0.3"
 maven-assertj = "3.27.7"
 google-androidx-core = "1.18.0"
@@ -13,7 +13,10 @@ google-fragment = "1.8.9"
 maven-leakcanary = "2.14"
 gradle-doctor = "0.12.1"
 maven-binarycompatiblity = "0.18.1"
-maven-paparazzi = "2.0.0-alpha04"
+maven-roborazzi = "1.59.0"
+maven-robolectric = "4.16.1"
+androidx-test = "1.7.0"
+androidx-test-junit = "1.3.0"
 maven-vanniktech-maven-publish = "0.36.0"
 
 [libraries]
@@ -29,6 +32,10 @@ constraintlayout-core = { module = "androidx.constraintlayout:constraintlayout",
 material-core = { module = "com.google.android.material:material", version.ref = "google-material" }
 leakcanary-android = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "maven-leakcanary" }
 vanniktech-maven-publish = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "maven-vanniktech-maven-publish" }
+roborazzi = { module = "io.github.takahirom.roborazzi:roborazzi", version.ref = "maven-roborazzi" }
+robolectric = { module = "org.robolectric:robolectric", version.ref = "maven-robolectric" }
+androidx-test-core = { module = "androidx.test:core", version.ref = "androidx-test" }
+androidx-test-junit = { module = "androidx.test.ext:junit", version.ref = "androidx-test-junit" }
 
 [plugins]
 starter-config = { id = "com.starter.config", version.ref = "gradle-starter" }
@@ -36,6 +43,6 @@ starter-versioning = { id = "com.starter.versioning", version.ref = "gradle-star
 starter-library-kotlin = { id = "com.starter.library.kotlin", version.ref = "gradle-starter" }
 starter-library-android = { id = "com.starter.library.android", version.ref = "gradle-starter" }
 starter-application-android = { id = "com.starter.application.android", version.ref = "gradle-starter" }
-app-cash-paparazzi = { id = "app.cash.paparazzi", version.ref = "maven-paparazzi" }
+roborazzi = { id = "io.github.takahirom.roborazzi", version.ref = "maven-roborazzi" }
 osacky-doctor = { id = "com.osacky.doctor", version.ref = "gradle-doctor" }
 kotlinx-binarycompatibility = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "maven-binarycompatiblity" }

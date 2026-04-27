@@ -52,8 +52,14 @@ jobs:
 
       - uses: gradle/actions/setup-gradle@v6
 
-      - run: ./gradlew assemble check verifyPaparazzi --scan
+      - run: ./gradlew assemble check verifyRoborazzi --scan
         working-directory: sample
+
+      - uses: actions/upload-artifact@v7
+        if: ${{ failure() }}
+        with:
+          name: screenshots
+          path: sample/app/build/outputs/roborazzi
 
       - uses: actions/upload-artifact@v7
         with:
