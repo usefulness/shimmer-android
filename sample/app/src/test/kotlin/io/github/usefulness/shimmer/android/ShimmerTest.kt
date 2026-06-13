@@ -18,12 +18,13 @@ import org.junit.Test
 import org.junit.rules.TestName
 import org.junit.runner.RunWith
 import org.robolectric.annotation.Config
+import org.robolectric.annotation.Config.NEWEST_SDK
 import org.robolectric.annotation.GraphicsMode
 import org.robolectric.annotation.GraphicsMode.Mode.NATIVE
 
 @RunWith(AndroidJUnit4::class)
 @GraphicsMode(NATIVE)
-@Config(qualifiers = RobolectricDeviceQualifiers.Pixel5)
+@Config(qualifiers = RobolectricDeviceQualifiers.Pixel5, sdk = [NEWEST_SDK])
 class ShimmerTest {
 
     @get:Rule
