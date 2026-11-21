@@ -11,7 +11,7 @@ commonConfig {
 allprojects {
   pluginManager.withPlugin("kotlin") {
     kotlin {
-      jvmToolchain(25)
+      jvmToolchain(libs.versions.java.compilation.get().toInteger())
     }
   }
 }
