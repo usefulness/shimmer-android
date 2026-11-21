@@ -1,17 +1,3 @@
 plugins {
-  alias(libs.plugins.starter.config)
-  alias(libs.plugins.starter.versioning)
   alias(libs.plugins.starter.library.android) apply false
-}
-
-commonConfig {
-  javaVersion JavaVersion.VERSION_11
-}
-
-allprojects {
-  pluginManager.withPlugin("kotlin") {
-    kotlin {
-      jvmToolchain(libs.versions.java.compilation.get().toInteger())
-    }
-  }
 }

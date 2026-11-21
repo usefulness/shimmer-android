@@ -32,9 +32,9 @@ jobs:
 
       - run: ./gradlew assemble
 
-      - run: ./gradlew publishAllPublicationsToMavenCentralRepository --no-configuration-cache
+      - run: ./gradlew publishAllPublicationsToMavenCentralRepository
 
-      - run: ./gradlew publishAllPublicationsToGithubRepository --no-configuration-cache
+      - run: ./gradlew publishAllPublicationsToGithubRepository
 
       - uses: gradle/actions/setup-gradle@v6
 
